@@ -7,7 +7,8 @@
 
 :root {
     --column-background: #dfe3e6;
-    --button-color: #39c071;
+    --button-color: #6c6ec0;
+    --dark-button-color: #3b3c63;
     --box-shadow: 0 1px 4px rgba(9, 45, 66, 0.25);
 }
 
@@ -20,4 +21,10 @@
     font-family: 'Montserrat', sans-serif;
     line-height: 19px;
     box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
 }

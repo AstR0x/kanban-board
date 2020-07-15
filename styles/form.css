@@ -2,7 +2,7 @@
     padding: 8px 12px 12px 0;
 }
 
-.column__open-form-button {
+.column__open-form {
     width: 100%;
     margin-top: 4px;
     display: flex;
@@ -10,6 +10,11 @@
     color: #6b808c;
     background: none;
     cursor: pointer;
+    transition: font-weight .05s linear;
+}
+
+.column__open-form:focus {
+    font-weight: bold;
 }
 
 .column__button-title {
@@ -20,21 +25,34 @@
     width: 100%;
     padding: 8px 8px 8px 12px;
     margin-bottom: 6px;
-    color: #b8b9bb;
     background-color: #fff;
     border-radius: 3px;
     box-shadow: var(--box-shadow);
 }
 
+.column__input::placeholder {
+    color: #b8b9bb;
+}
+
+.column__add_hidden,
+.column__open-form_hidden {
+    display: none;
+}
+
 .column__textarea {
+    display: block;
     height: 54px;
     width: 100%;
-    padding: 8px 12px;
     resize: none;
-    color: #b8b9bb;
+    margin-bottom: 6px;
+    padding: 8px 12px;
     background-color: #fff;
     border-radius: 3px;
     box-shadow: var(--box-shadow);
+}
+
+.column__textarea::placeholder {
+    color: #b8b9bb;
 }
 
 .column__buttons {
@@ -43,7 +61,8 @@
     justify-content: space-between;
 }
 
-.column__add-button {
+.column__add-card-button,
+.column__add-column-button {
     height: 30px;
     width: 152px;
     margin-top: 3px;
@@ -51,11 +70,23 @@
     font-weight: bold;
     border-radius: 3px;
     background-color: var(--button-color);
+    transition: background-color .2s linear;
     cursor: pointer;
 }
 
-.column__cancel-button {
+.column__add-card-button:focus,
+.column__add-column-button:focus {
+    background-color: var(--dark-button-color);
+}
+
+.column__close-form-button {
     height: 15px;
     background-color: var(--column-background);
+    transition: opacity .1s linear;
+    opacity: .5;
     cursor: pointer;
+}
+
+.column__close-form-button:focus {
+    opacity: 1;
 }

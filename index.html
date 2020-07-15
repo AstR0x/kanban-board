@@ -13,7 +13,7 @@
     <div class="columns">
         <div class="column">
             <h2 class="column__name">Планы на месяц</h2>
-            <div class="column__scrollbar-container">
+            <div class="column__cards-container">
                 <div class="column__cards">
                     <div class="column__card">
                         <p>Пройти курс по React</p>
@@ -34,9 +34,9 @@
                         <p>Написать первую статью в блог</p>
                     </div>
                     <div class="column__card">
-                        <p>Записаться в мотошколу. Хотя немного страшновато, конечно. Друзья и родители против, но очень
-                            хочется. Но кого я обманываю, уже 2 года решаюсь на этот шаг 😢 Еще и друзья будут хрустиком
-                            называть. В общем, хотя бы подумать над этим.</p>
+                        <p>Записаться в мотошколу. Хотя немного страшновато, конечно. Друзья и родители против, но
+                            очень хочется. Но кого я обманываю, уже 2 года решаюсь на этот шаг 😢 Еще и друзья будут
+                            хрустиком называть. В общем, хотя бы подумать над этим.</p>
                     </div>
                     <div class="column__card">
                         <p>Пройти курс по React</p>
@@ -46,21 +46,31 @@
                     </div>
                 </div>
             </div>
-            <form class="column__form">
-                <button class="column__open-form-button">
+            <form class="column__form column__add-card-form">
+                <button type="button" class="column__open-form">
                     <img src="assets/icons/plus.svg" alt="открыть форму">
                     <span class="column__button-title">
                     Добавить ещё одну карточку
                 </span>
                 </button>
+                <div class="column__add column__add_hidden">
+                    <textarea class="column__textarea" placeholder="Введите название карточки" autofocus
+                              required></textarea>
+                    <div class="column__buttons">
+                        <button type="submit" class="column__add-card-button">Добавить карточку</button>
+                        <button type="button" class="column__close-form-button">
+                            <img src="assets/icons/close.svg" alt="добавить карточку">
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="column">
-            <h2 class="column__name">Планы на день</h2>
-            <div class="column__scrollbar-container">
+            <h2 class="column__name">Планы на месяц</h2>
+            <div class="column__cards-container">
                 <div class="column__cards">
                     <div class="column__card">
-                        <p>Записаться на курс по React</p>
+                        <p>Записать на курс по React</p>
                     </div>
                     <div class="column__card">
                         <p>Забронировать тир на субботу</p>
@@ -68,41 +78,51 @@
                     <div class="column__card">
                         <p>Накидать тем для статей в блог</p>
                     </div>
+                    <div class="column__card">
+                        <p>Сделать колонку Итоги</p>
+                    </div>
                 </div>
             </div>
-            <form class="column__form">
-                <textarea class="column__textarea" placeholder="Введите название карточки" autofocus
-                          required></textarea>
-                <div class="column__buttons">
-                    <button type="submit" class="column__add-button">Добавить карточку</button>
-                    <button type="button" class="column__cancel-button">
-                        <img src="assets/icons/cancel.svg" alt="добавить карточку">
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="column">
-            <form class="column__form">
-                <input class="column__input" placeholder="Введите название колонки" autofocus required />
-                <div class="column__buttons">
-                    <button type="submit" class="column__add-button">Добавить колонку</button>
-                    <button type="button" class="column__cancel-button">
-                        <img src="assets/icons/cancel.svg" alt="добавить колонку">
-                    </button>
-                </div>
-            </form>
-        </div>
-        <div class="column">
-            <form class="column__form">
-                <button class="column__open-form-button">
+            <form class="column__form column__add-card-form">
+                <button type="button" class="column__open-form">
                     <img src="assets/icons/plus.svg" alt="открыть форму">
                     <span class="column__button-title">
-                        Добавить ещё одну колонку
-                    </span>
+                    Добавить ещё одну карточку
+                </span>
                 </button>
+                <div class="column__add column__add_hidden">
+                    <textarea class="column__textarea" placeholder="Введите название карточки"
+                              autofocus required></textarea>
+                    <div class="column__buttons">
+                        <button type="submit" class="column__add-card-button">Добавить карточку</button>
+                        <button type="button" class="column__close-form-button">
+                            <img src="assets/icons/close.svg" alt="добавить карточку">
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="column only-create-column-form">
+            <form class="column__form column__add-column-form">
+                <button type="button" class="column__open-form">
+                    <img src="assets/icons/plus.svg" alt="открыть форму">
+                    <span class="column__button-title">
+                    Добавить ещё одну колонку
+                </span>
+                </button>
+                <div class="column__add column__add_hidden">
+                    <input class="column__input" placeholder="Введите название колонки" autofocus required />
+                    <div class="column__buttons">
+                        <button type="submit" class="column__add-column-button">Добавить колонку</button>
+                        <button type="button" class="column__close-form-button">
+                            <img src="assets/icons/close.svg" alt="добавить колонку">
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
+<script src="scripts/main.js" type="module"></script>
 </body>
 </html>

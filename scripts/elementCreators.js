@@ -23,9 +23,9 @@ export const createCard = content => {
 
 export const createCards = () => {
   const cards = createElement('div', { className: 'column__cards' });
-  const scrollBarContainer = createElement('div', { className: 'column__scrollbar-container' }, cards);
+  const cardsContainer = createElement('div', { className: 'column__cards-container' }, cards);
 
-  return scrollBarContainer;
+  return cardsContainer;
 };
 
 export const createColumn = name => {

@@ -16,11 +16,12 @@
 }
 
 .column__name {
-    padding: 12px 0;
+    padding-top: 12px;
     font-weight: bold;
 }
 
-.column__scrollbar-container {
+.column__cards-container {
+    margin-top: 8px;
     padding-right: 12px;
     overflow-y: auto;
 }
@@ -31,10 +32,20 @@
     border-radius: 4px;
     background-color: #fff;
     box-shadow: var(--box-shadow);
+    cursor: grab;
+}
+
+.column__card:active {
+    cursor: grabbing;
 }
 
 .column__card:first-child {
     margin-top: 0;
 }
 
+@media (max-width: 414px) {
+    .columns {
+        flex-direction: column;
+    }
+}
 
