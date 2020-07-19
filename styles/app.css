@@ -1,6 +1,11 @@
-.app {
+.app-container {
     height: 100vh;
     padding: 14px 20px;
     background: url(../assets/images/background.jpeg) no-repeat;
     background-size: cover;
+    overflow-x: auto;
+}
+
+.app {
+    height: 100%;
 }

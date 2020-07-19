@@ -3,6 +3,10 @@ const createElement = (tag, attributes, ...children) => {
 
   Object.keys(attributes).forEach(key => element[key] = attributes[key]);
 
+  if (attributes.style) {
+    Object.keys(attributes.style).forEach(key => element.style[key] = attributes.style[key]);
+  }
+
   if (children.length) {
     children.forEach(child => {
       if (typeof child === 'string') {
@@ -19,6 +23,10 @@ const createElement = (tag, attributes, ...children) => {
 export const createCard = content => {
   const cardContent = createElement('p', {}, content);
   return createElement('div', { className: 'column__card' }, cardContent);
+};
+
+export const createShadowCard = (width, height) => {
+  return createElement('div', { className: 'column__shadow-card', style: { width: `${width}px`, height: `${height}px` } });
 };
 
 export const createCards = () => {

@@ -1,9 +1,11 @@
 import { LEFT_MOUSE_BUTTON_CODE } from './constants.js'
+import { saveColumns } from './storage.js';
 
 import {
   createCard,
   createCards,
   createColumn,
+  createShadowCard,
 } from './elementCreators.js';
 
 import {
@@ -14,9 +16,10 @@ import {
   resetMovingCardStyles,
 } from './utils.js';
 
+const shouldAddShadowCard = (cardBelowCard, cardsBelowCard) => Boolean(cardBelowCard || !cardsBelowCard.children.length);
 const addCard = (parentNode, content) => parentNode.appendChild(createCard(content));
 
-export const addCards = parentNode => {
+export const addCardsContainer = parentNode => {
   const form = parentNode.querySelector('.column__form');
   return parentNode.insertBefore(createCards(), form);
 };
@@ -30,7 +33,8 @@ export const handleSubmit = event => {
   const openFormNode = column.querySelector('.column__open-form');
 
   if (form.classList.contains('column__add-card-form')) {
-    const cards = column.querySelector('.column__cards') || addCards(column);
+    const cardsContainer = column.querySelector('.column__cards-container') || addCardsContainer(column);
+    const cards = cardsContainer.querySelector('.column__cards');
     const textarea = addNode.querySelector('.column__textarea');
 
     addCard(cards, textarea.value);
@@ -46,9 +50,11 @@ export const handleSubmit = event => {
 
   addNode.classList.toggle('column__add_hidden');
   openFormNode.classList.toggle('column__open-form_hidden');
+  saveColumns();
 };
 
-export const handleClick = ({ target }) => {
+export const handleClick = event => {
+  const { target } = event;
   const openForm = target.closest('.column__open-form');
   const closeFormButton = target.closest('.column__close-form-button');
 
@@ -63,43 +69,80 @@ export const handleClick = ({ target }) => {
 };
 
 export const handleMouseDown = event => {
-  if (event.button === LEFT_MOUSE_BUTTON_CODE) {
+  const { target, button, pageX, pageY } = event;
 
-    const card = event.target.closest('.column__card');
+  if (button === LEFT_MOUSE_BUTTON_CODE) {
+    const card = target.closest('.column__card');
 
     if (card) {
       const { top, left, height, width } = card.getBoundingClientRect();
-      const shiftX = event.pageX - left + pageXOffset;
-      const shiftY = event.pageY - top + pageYOffset;
+      const shiftX = pageX - left + pageXOffset;
+      const shiftY = pageY - top + pageYOffset;
+      const columns = card.closest('.columns');
 
       setMovingCardStyles(card, width, height);
 
-      document.onmousemove = event => moveElement(event, card, shiftX, shiftY);
+      const cards = card.parentNode;
+      const nextCard = card.nextSibling;
+      const shadowCard = createShadowCard(width, height);
 
-      document.onmouseup = event => {
+      document.body.appendChild(card);
+      moveElement(event, card, shiftX, shiftY);
+
+      nextCard
+        ? cards.insertBefore(shadowCard, nextCard)
+        : cards.appendChild(shadowCard);
+
+      document.onmousemove = event => {
+        moveElement(event, card, shiftX, shiftY);
+
         const elementBelowCard = getElementBelow(card, event.clientX, event.clientY);
-        const column = elementBelowCard.closest('.column');
 
-        if (column && !column.classList.contains('only-create-column-form')) {
-          const cardParent = card.parentNode;
+        if (elementBelowCard) {
+          const columnBelowCard = elementBelowCard.closest('.column');
+          const cardBelowCard = elementBelowCard.closest('.column__card');
 
-          if (cardParent.children.length === 1) {
-            cardParent.parentNode.remove();
+          if (columnBelowCard && !columnBelowCard.classList.contains('column-form')) {
+            if (!columnBelowCard.querySelector('.column__cards-container')) {
+              addCardsContainer(columnBelowCard);
+            }
+
+            const cardsBelowCard = columnBelowCard.querySelector('.column__cards');
+            const shadowCard = columns.querySelector('.column__shadow-card');
+
+            if (shouldAddShadowCard(cardBelowCard, cardsBelowCard)) {
+              if (shadowCard) {
+                const shadowCardParent = shadowCard.parentNode;
+
+                if (shadowCardParent.children.length === 1) {
+                  shadowCardParent.parentNode.remove();
+                }
+
+                shadowCard.remove()
+              }
+
+              const newShadowCard = createShadowCard(width, height);
+
+              cardBelowCard
+                ? insertAfter(cardsBelowCard, newShadowCard, cardBelowCard)
+                : cardsBelowCard.appendChild(newShadowCard);
+            }
           }
+        }
+      };
 
-          const cardsContainer = column.querySelector('.column__cards-container') || addCards(column);
-          const cards = cardsContainer.querySelector('.column__cards');
-          const belowCard = elementBelowCard.closest('.column__card');
+      document.onmouseup = () => {
+        const shadowCard = columns.querySelector('.column__shadow-card');
+        const shadowCardParent = shadowCard.parentNode;
 
-          belowCard
-            ? insertAfter(cards, card, belowCard)
-            : cards.appendChild(card);
+        if (shadowCard) {
+          shadowCardParent.replaceChild(card, shadowCard);
+          resetMovingCardStyles(card);
         }
 
         document.onmousemove = null;
         document.onmouseup = null;
-
-        resetMovingCardStyles(card);
+        saveColumns();
       };
     }
   }

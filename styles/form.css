@@ -1,5 +1,5 @@
 .column__form {
-    padding: 8px 12px 12px 0;
+    padding: 8px 12px 12px 12px;
 }
 
 .column__open-form {
@@ -44,7 +44,6 @@
     height: 54px;
     width: 100%;
     resize: none;
-    margin-bottom: 6px;
     padding: 8px 12px;
     background-color: #fff;
     border-radius: 3px;
@@ -56,6 +55,7 @@
 }
 
 .column__buttons {
+    margin-top: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,7 +65,6 @@
 .column__add-column-button {
     height: 30px;
     width: 152px;
-    margin-top: 3px;
     color: #fff;
     font-weight: bold;
     border-radius: 3px;

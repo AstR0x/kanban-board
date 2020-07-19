@@ -7,6 +7,7 @@
 
 :root {
     --column-background: #dfe3e6;
+    --shadow-card-background: #c9d2d9;
     --button-color: #6c6ec0;
     --dark-button-color: #3b3c63;
     --box-shadow: 0 1px 4px rgba(9, 45, 66, 0.25);
@@ -26,5 +27,4 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
 }
