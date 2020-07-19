@@ -5,8 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>kanban-board</title>
-    <link rel="stylesheet" href="styles/main.css">
+    <title></title>
 </head>
 <body>
 <div class="app-container">
@@ -49,7 +48,7 @@
                 </div>
                 <form class="column__form column__add-card-form">
                     <button type="button" class="column__open-form">
-                        <img src="assets/icons/plus.svg" alt="открыть форму">
+                        <img src="<%= PLUS_ICON %>" alt="открыть форму">
                         <span class="column__button-title">
                     Добавить ещё одну карточку
                 </span>
@@ -60,7 +59,7 @@
                         <div class="column__buttons">
                             <button type="submit" class="column__add-card-button">Добавить карточку</button>
                             <button type="button" class="column__close-form-button">
-                                <img src="assets/icons/close.svg" alt="добавить карточку">
+                                <img src="<%= CLOSE_ICON %>" alt="закрыть форму">
                             </button>
                         </div>
                     </div>
@@ -86,7 +85,7 @@
                 </div>
                 <form class="column__form column__add-card-form">
                     <button type="button" class="column__open-form">
-                        <img src="assets/icons/plus.svg" alt="открыть форму">
+                        <img src="<%= PLUS_ICON %>" alt="открыть форму">
                         <span class="column__button-title">
                     Добавить ещё одну карточку
                 </span>
@@ -97,7 +96,7 @@
                         <div class="column__buttons">
                             <button type="submit" class="column__add-card-button">Добавить карточку</button>
                             <button type="button" class="column__close-form-button">
-                                <img src="assets/icons/close.svg" alt="добавить карточку">
+                                <img src="<%= CLOSE_ICON %>" alt="закрыть форму">
                             </button>
                         </div>
                     </div>
@@ -106,7 +105,7 @@
             <div class="column column-form">
                 <form class="column__form column__add-column-form">
                     <button type="button" class="column__open-form">
-                        <img src="assets/icons/plus.svg" alt="открыть форму">
+                        <img src="<%= PLUS_ICON %>" alt="открыть форму">
                         <span class="column__button-title">
                     Добавить ещё одну колонку
                 </span>
@@ -116,7 +115,7 @@
                         <div class="column__buttons">
                             <button type="submit" class="column__add-column-button">Добавить колонку</button>
                             <button type="button" class="column__close-form-button">
-                                <img src="assets/icons/close.svg" alt="добавить колонку">
+                                <img src="<%= CLOSE_ICON %>" alt="закрыть форму">
                             </button>
                         </div>
                     </div>
@@ -125,6 +124,5 @@
         </div>
     </div>
 </div>
-<script src="scripts/main.js" type="module"></script>
 </body>
 </html>

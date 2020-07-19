@@ -17,12 +17,13 @@ import {
 } from './utils.js';
 
 const shouldAddShadowCard = (cardBelowCard, cardsBelowCard) => Boolean(cardBelowCard || !cardsBelowCard.children.length);
-const addCard = (parentNode, content) => parentNode.appendChild(createCard(content));
 
-export const addCardsContainer = parentNode => {
+const addCardsContainer = parentNode => {
   const form = parentNode.querySelector('.column__form');
   return parentNode.insertBefore(createCards(), form);
 };
+
+const addCard = (parentNode, content) => parentNode.appendChild(createCard(content));
 
 export const handleSubmit = event => {
   event.preventDefault();
